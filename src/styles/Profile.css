@@ -2,5 +2,27 @@
   width: 200px;
   background-color: #ccc;
   font: 0.8em;
-  text-align: center;
+
+}
+.profile-entry{
+  display: flex;
+  width: 100%;
+  padding: 10px 10px;
+  box-sizing: border-box;
+}
+
+.player-name{
+ font-size: 25px;
+ font-weight: bold;
+ display: block;
+}
+
+.profile-entry-left{
+ text-align: left;
+ font-weight: bold;
+}
+
+.profile-entry-right{
+  text-align: right;
+  flex: 1;
 }
