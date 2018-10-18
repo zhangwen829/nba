@@ -14,7 +14,12 @@ export default class Main extends React.Component {
   componentDidMount() {
     const { playerId } = nba.findPlayer('Stephen Curry');
     nba.stats.playerInfo({ PlayerID: playerId }).then(
-      (info) => console.log(info)
+      (info) => {
+        const playerInfo = { ...info.commonPlayerInfo[0], ...info.playerHeadlineStats[0] };
+        this.setState({
+          playerInfo
+        })
+      }
     );
   }
 
