@@ -17,7 +17,7 @@ export default class CountSlider extends React.Component {
     const { inputValue } = this.state;
     return (
       <Row>
-        <Col span={12}>
+        <Col span={12} offset={4}>
           <Slider
             min={2}
             max={20}
