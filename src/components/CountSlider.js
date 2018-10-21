@@ -11,6 +11,7 @@ export default class CountSlider extends React.Component {
     this.setState({
       inputValue: value,
     });
+    this.props.onChange(value);
   }
 
   render() {
