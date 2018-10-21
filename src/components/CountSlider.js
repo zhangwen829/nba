@@ -8,12 +8,15 @@ export default class CountSlider extends React.Component {
   }
 
   onChange = (value) => {
+    // type check to make sure value is a number
+    const cleanValue = Number(value) ? value : this.state.inputValue;
+
     this.setState({
-      inputValue: value,
+      inputValue: cleanValue,
     });
 
     // callback, change the state of parent component <DataViewContainer>, pass minCount as prop to sibling component <ShotChart>
-    this.props.onChange(value);
+    this.props.onChange(cleanValue);
   }
 
   render() {
