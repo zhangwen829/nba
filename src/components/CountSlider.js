@@ -4,13 +4,15 @@ import { Slider, InputNumber, Row, Col } from 'antd';
 
 export default class CountSlider extends React.Component {
   state = {
-    inputValue: 2,
+    inputValue: this.props.value,
   }
 
   onChange = (value) => {
+    // change the local state (inputValue), which is the value of <Slider> and <InputNumber>
     this.setState({
       inputValue: value,
     });
+    // callback, change the state of <DataViewContainer>, pass minCount as prop to <ShotChart>
     this.props.onChange(value);
   }
 
