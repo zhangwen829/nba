@@ -15,7 +15,8 @@ export default class ShotChart extends React.Component {
     chartType: PropTypes.string.isRequired
   }
 
-  componentDidMount() {
+  // componentDidUpdate vs componentDidMount
+  componentDidUpdate() {
     nba.stats.shots({
       PlayerID: this.props.playerId,
       Season: "2017-18"
@@ -29,6 +30,7 @@ export default class ShotChart extends React.Component {
       }));
 
       const courtSelection = d3.select("#shot-chart");
+      courtSelection.html(''); // clear the chart
       const chart_court = court().width(500);
       const chart_shots = shots()
         .shotRenderThreshold(this.props.minCount)
