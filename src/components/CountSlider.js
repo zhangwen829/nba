@@ -8,11 +8,11 @@ export default class CountSlider extends React.Component {
   }
 
   onChange = (value) => {
-    // change the local state (inputValue), which is the value of <Slider> and <InputNumber>
     this.setState({
       inputValue: value,
     });
-    // callback, change the state of <DataViewContainer>, pass minCount as prop to <ShotChart>
+
+    // callback, change the state of parent component <DataViewContainer>, pass minCount as prop to sibling component <ShotChart>
     this.props.onChange(value);
   }
 

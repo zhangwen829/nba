@@ -1,5 +1,6 @@
 import React from 'react';
 import { Radio, Switch, Row, Col } from 'antd';
+import _ from 'lodash';
 import ShotChart from './ShotChart';
 import CountSlider from './CountSlider'
 
@@ -40,7 +41,8 @@ export default class DataViewContainer extends React.Component {
         />{
           chartType === 'hexbin' ?
 
-            <CountSlider value={minCount} onChange={this.onCountSliderChange} /> : null}
+            <CountSlider value={minCount} onChange={_.debounce(this.onCountSliderChange, 500)}
+            /> : null}
         <Row>
           <Col span={8} offset={7}>
             <RadioGroup onChange={this.onChartTypeChange} value={chartType}>
