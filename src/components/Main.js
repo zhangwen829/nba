@@ -10,25 +10,34 @@ export default class Main extends React.Component {
   state = {
     playerInfo: {
       playerId: 201939,
+      playerName: 'Stephen Curry'
     }
   }
 
   componentDidMount() {
-    const { playerId } = nba.findPlayer('Stephen Curry');
+    this.loadPlayerInfo(this.state.playerInfo.playerName);
+  }
+
+  loadPlayerInfo = (playerName) => {
+    const playerId = nba.findPlayer(playerName).playerId;
+
     nba.stats.playerInfo({ PlayerID: playerId }).then(
       (info) => {
         const playerInfo = { ...info.commonPlayerInfo[0], ...info.playerHeadlineStats[0] };
+        console.log(playerInfo);
         this.setState({
           playerInfo
-        })
+        });
       }
     );
+
   }
+
 
   render() {
     return (
       <div className="main">
-        <SearchBar />
+        <SearchBar loadPlayerInfo={this.loadPlayerInfo} />
         <div className="player">
           <Profile playerInfo={this.state.playerInfo} />
           <DataViewContainer playerId={this.state.playerInfo.playerId} />
