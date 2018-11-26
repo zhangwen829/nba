@@ -6,19 +6,19 @@ import { PROFILE_PIC_URL_PREFIX } from '../constants';
 
 const Option = AutoComplete.Option;
 
-function onSelect(value) {
-  console.log('onSelect', value);
-}
-
 export default class SearchBar extends React.Component {
   state = {
     dataSource: [],
   }
 
+  onSelect = (playerName) => {
+    console.log('onSelect', playerName);
+  }
+
   handleSearch = (value) => {
     this.setState({
       dataSource: !value ? [] : nba.searchPlayers(value).map(({ fullName, playerId }) =>
-        <Option key={playerId}>
+        <Option key={playerId} value={fullName}>
           <img
             className="player-option-pic"
             src={`${PROFILE_PIC_URL_PREFIX}/${playerId}.png`}
@@ -37,9 +37,10 @@ export default class SearchBar extends React.Component {
         className="search-bar"
         size="large"
         dataSource={dataSource}
-        onSelect={onSelect}
+        onSelect={this.onSelect}
         onSearch={this.handleSearch}
         placeholder="Search NBA Player"
+        optionLabelProp="value"
       >
         <Input suffix={<Icon type="search" />} />
       </AutoComplete>
